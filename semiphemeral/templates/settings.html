@@ -6,33 +6,33 @@
 <div class="settings">
   <form method="post" action="{{ url_for('edit_settings') }}">
 
-    <h3>Twitter settings</h3>
-
-    <p>See <a href="https://python-twitter.readthedocs.io/en/latest/getting_started.html">here</a> for documentation on how to get these Twitter API credentials.</p>
-
-    <ul>
-      <li>
-        <label for="api_key">API key</label>
-        <input type="text" name="api_key" value="{{ api_key }}" \>
-      </li>
-      <li>
-        <label for="api_secret">API secret</label>
-        <input type="text" name="api_secret" value="{{ api_secret }}" \>
-      </li>
-      <li>
-        <label for="access_token_key">Access token key</label>
-        <input type="text" name="access_token_key" value="{{ access_token_key }}" \>
-      </li>
-      <li>
-        <label for="access_token_secret">Access token secret</label>
-        <input type="text" name="access_token_secret" value="{{ access_token_secret }}" \>
-      </li>
-      <li>
-        <label for="username">Twitter username</label>
-        <input type="text" name="username" value="{{ username }}" \>
-      </li>
-    </ul>
-    
+    <fieldset class="twitter-settings-fieldset">
+      <legend>Twitter settings</legend>
+      <p>See <a href="https://python-twitter.readthedocs.io/en/latest/getting_started.html">here</a> for documentation on how to get these Twitter API credentials.</p>
+      <ul>
+        <li>
+          <label for="api_key">API key</label>
+          <input type="text" name="api_key" value="{{ api_key }}" \>
+        </li>
+        <li>
+          <label for="api_secret">API secret</label>
+          <input type="text" name="api_secret" value="{{ api_secret }}" \>
+        </li>
+        <li>
+          <label for="access_token_key">Access token key</label>
+          <input type="text" name="access_token_key" value="{{ access_token_key }}" \>
+        </li>
+        <li>
+          <label for="access_token_secret">Access token secret</label>
+          <input type="text" name="access_token_secret" value="{{ access_token_secret }}" \>
+        </li>
+        <li>
+          <label for="username">Twitter username</label>
+          <input type="text" name="username" value="{{ username }}" \>
+        </li>
+      </ul>
+    </fieldset>
+      
     <p>
       <label class="checkbox">
         <input type="checkbox" class="log-to-file-checkbox" name="log_to_file" {%if log_to_file %}checked="checked" {% endif %} />

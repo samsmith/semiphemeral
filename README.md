@@ -2,11 +2,11 @@
 
 # Semiphemeral
 
-There are plenty of tools that let you make your Twitter feed ephemeral, automatically deleting tweets older than some threshold, like one month.
+Want to clean up your Twitter presence, but without deleting all of your old tweets?
 
-Semiphemeral does this, but also lets you automatically exclude tweets based on criteria: how many RTs or likes they have, and if they're part of a thread where one of your tweets has that many RTs or likes. It also lets you manually select tweets you'd like to exclude from deleting.
+Semiphemeral lets you automatically delete tweets older than some threshold, like one month, but with the option to exclude tweets based on criteria: how many RTs or likes they have, and if they're part of a thread where one of your tweets has that many RTs or likes. It also lets you manually select tweets you'd like to exclude from deleting.
 
-It delete all of your old likes, even really old ones that Twitter makes difficult to delete. And it can automatically delete your old direct messages.
+It also can delete all of your old likes, even really old ones that Twitter makes difficult to delete. And it can automatically delete your old direct messages.
 
 Read more:
 
@@ -44,15 +44,39 @@ Commands:
                    API
 ```
 
-Start by running `semiphemeral configure`, which starts a local web server at http://127.0.0.1:8080/. Load that website in a browser.
+---
+
+Start by running `semiphemeral configure`, which starts a local web server at http://127.0.0.1:8080/. Load that website in a browser. It will look like this:
+
+![Settings](/img/settings.png)
+
+### Twitter settings
 
 You must supply Twitter API credentials here, which you can get by following [this guide](https://python-twitter.readthedocs.io/en/latest/getting_started.html). Basically, you need to login to https://developer.twitter.com/ and create a new "Twitter app" that only you will be using (when creating an app, you're welcome to use https://github.com/micahflee/semiphemeral as the website URL for your app).
 
 If you want to delete your DMs, you'll have to make sure to give your Twitter app "Read, write, and Direct Messages" permissions, instead of just "Read and write". If you're modifying an existing app to add Direct Message permissions, you'll have to go to the app's "Keys and tokens" page, and under "Access token & access token secret" click "Regenerate". Then add the new access token key and secret into semiphemeral's settings.
 
-From the settings page you also tell semiphemeral which tweets to exclude from deletion:
+### Log events
 
-![Settings](/img/settings.png)
+If you want, semiphemeral can log what it does to disk.
+
+### Delete old tweets
+
+You cna choose how long you want your twitter history to be here, and which tweets should be automatically excluded based on retweet or like thresholds. (If you want to delete all tweets, just set the thresholds to `0`.)
+
+### Unretweet and unlike old tweets
+
+You can choose to also delete old retweets and unlike old tweets.
+
+Note that just with this setting, in some cases semiphemeral can't unlike very old tweets. See [Deleting old likes](#deleting-old-likes) for more information.
+
+### Delete direct messages
+
+You can also delete your old direct messages.
+
+Note that the Twitter API [only allows](https://developer.twitter.com/en/docs/direct-messages/sending-and-receiving/api-reference/list-events) you to get the most recent 30 days worth of your DMs, and won't let you access DMs older than that. So you might want to manually go delete all of your DMs older than 30 days. Also note that deleting DMs only deletes it on your side -- any people you're sending DMs to will still have a copy.
+
+---
 
 Once you have configured semiphemeral, fetch all of the tweets from your account by running `semiphemeral fetch`. (It may take a long time if you have a lot of tweets -- when semiphemeral hits a Twitter rate limit, it just waits the shortest amount of time allowed until it can continue fetching.)
 

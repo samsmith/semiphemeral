@@ -17,10 +17,17 @@ $(function(){
     } else {
       $('.retweets-likes-fieldset').hide();
     }
+
+    if($('.dms-checkbox').prop('checked')) {
+      $('.dms-fieldset').show();
+    } else {
+      $('.dms-fieldset').hide();
+    }
   }
 
   $('.log-to-file-checkbox').change(update_ui);
   $('.delete-tweets-checkbox').change(update_ui);
   $('.retweets-likes-checkbox').change(update_ui);
+  $('.dms-checkbox').change(update_ui);
   update_ui();
 })
